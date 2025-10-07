@@ -76,7 +76,7 @@ body {
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: -50px; /* shifted slightly left */
+  left: -50px;
   background-color: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(6px);
   border-radius: 8px;
@@ -140,7 +140,6 @@ body {
   transition: all 0.3s ease;
 }
 
-/* Underlines for welcome text */
 .welcome-section h1 span::after,
 .welcome-section h2 span::after {
   content: "";
@@ -239,6 +238,7 @@ body {
   pointer-events: none;
   transition: opacity 0.5s ease;
   flex-direction: column;
+  overflow-y: auto;
 }
 
 .hidden-section.show {
@@ -246,34 +246,23 @@ body {
   pointer-events: all;
 }
 
-/* About Authors text - Arial */
-#about-text {
-  font-family: Arial, sans-serif;
+.hidden-section .about-content {
+  max-width: 800px;
+  text-align: center;
   font-size: 1.5rem;
   line-height: 1.8;
-  max-width: 90%;
-  text-align: center;
-  white-space: normal;
+  font-family: Arial, sans-serif;
+  padding: 2rem;
+  border-radius: 12px;
+  background-color: rgba(0,0,0,0.7);
+  box-shadow: 0 0 20px rgba(255,0,0,0.5);
+  transform: translateY(0);
+  transition: transform 0.3s ease;
 }
 
-#future-text {
-  font-size: 1.5rem;
-  line-height: 1.5;
-  border-right: none;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 90%;
-}
-
-.hidden-section.show #about-text,
-.hidden-section.show #future-text {
-  transform: translateY(10%);
-}
-
-/* Close Button */
-.close-btn {
-  margin-top: 35px; /* moved slightly lower */
-  padding: 0.5rem 1rem;
+.hidden-section .close-btn {
+  margin-top: 30px;
+  padding: 0.7rem 1.5rem;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -283,7 +272,7 @@ body {
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.close-btn:hover {
+.hidden-section .close-btn:hover {
   background-color: darkred;
   transform: scale(1.05);
 }
@@ -308,37 +297,6 @@ body {
 
 .footer span:hover {
   color: #ff4d4d;
-}
-
-/* Future Prospects Section */
-#future-prospects-section {
-  text-align: center;
-  padding: 4rem 2rem;
-  background: rgba(0,0,0,0.8);
-  color: white;
-}
-
-#future-prospects-section h1 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  color: #ff4d4d;
-}
-
-#future-prospects-section p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  max-width: 800px;
-  margin: 0 auto;
-  font-family: "Poppins", sans-serif;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  #about-text,
-  #future-text { font-size: 1.5rem; }
-  #contact .container { flex-direction: column; align-items: center; }
-  .nav-links { gap: 2rem; margin-right: 0; }
-  .shayari-box { padding: 1rem; }
 }
 
 /* Menu icon for mobile */
@@ -393,40 +351,24 @@ body {
   color: #fff;
 }
 
-/* Media Queries */
+/* Responsive */
 @media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-  .menu-icon {
-    display: block;
-  }
-
-  .welcome-section h1, 
-  .welcome-section h2 { font-size: 2rem; }
-
+  .nav-links { display: none; }
+  .menu-icon { display: block; }
+  .welcome-section h1, .welcome-section h2 { font-size: 2rem; }
   .tab-options { font-size: 1.5rem; gap: 2rem; }
   .shayari-box p { font-size: 1.2rem; }
   .contact-left h2.sub-title { font-size: 1.5rem; }
   .contact-left h3 { font-size: 1.2rem; }
   .contact-right input, .contact-right textarea { font-size: 0.95rem; }
   .contact-right button.btn2 { font-size: 0.95rem; padding: 0.5rem 1rem; }
-
-  #about-authors-section .close-btn {
-    margin-top: 60px; /* adjust as needed */
-  }
+  .hidden-section .about-content { width: 90%; font-size: 1.2rem; padding: 1.5rem; }
+  .hidden-section .close-btn { margin-top: 20px; }
+  body { background: url("Assets/background3.jpg") no-repeat center center fixed; background-size: cover; }
 }
 
 /* Default background for desktop */
-body {
+/* body {
   background: url("Assets/background2.png") no-repeat center center fixed;
   background-size: cover;
-}
-
-/* Background for mobile screens */
-@media (max-width: 768px) {
-  body {
-    background: url("Assets/background3.jpg") no-repeat center center fixed;
-    background-size: cover;
-  }
-}
+} */

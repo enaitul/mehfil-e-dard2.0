@@ -27,10 +27,9 @@ const shayaris = [{ english: "Ab mujhe uski yaad nahi aati, ab woh mujhe yaad ho
 { english: "Mujhe mehenge-mehenge tohfe bohot pasand hain, jaise waqt, aitbaar, izzat, aur chai.", urdu: "مجھے مہنگے مہنگے تحفے بہت پسند ہیں، جیسے وقت، اعتبار، عزت، اور چائے۔", audio: "Assets/ChaiK.m4a" },
 { english: "Intezaar itna karo ki Khuda bhi kahe, le le, haq hai tera.", urdu: "انتظار اتنا کرو کہ خدا بھی کہے، لے لے، حق ہے تیرا۔", audio: "Assets/HaqK.m4a" }, { english: "Hazaar gham hain, khulaasa kaun kare? Muskura dete hain, ab tamaasha kaun kare?", urdu: "ہزار غم ہیں، خلاصہ کون کرے؟ مسکرا دیتے ہیں، اب تماشہ کون کرے؟", audio: "Assets/TamashaK.m4a" }];
 
-
 let currentShayari = -1;
 
-// Mushaira tab
+// ===== Shayari Section =====
 mushairaTab.addEventListener("click", () => {
   mushairaTab.classList.add("active");
   poetsTab.classList.remove("active");
@@ -42,9 +41,12 @@ mushairaTab.addEventListener("click", () => {
   currentShayari = -1;
 });
 
-// Shayari button
 shayariBtn.addEventListener("click", () => {
-  const randomIndex = Math.floor(Math.random() * shayaris.length);
+  if (shayaris.length === 0) return;
+  let randomIndex;
+  do {
+    randomIndex = Math.floor(Math.random() * shayaris.length);
+  } while (randomIndex === currentShayari && shayaris.length > 1);
   currentShayari = randomIndex;
   englishShayari.textContent = shayaris[currentShayari].english;
   urduShayari.textContent = shayaris[currentShayari].urdu;
@@ -53,7 +55,6 @@ shayariBtn.addEventListener("click", () => {
   shayariBtn.textContent = "Next";
 });
 
-// Poets tab
 poetsTab.addEventListener("click", () => {
   mushairaTab.classList.remove("active");
   poetsTab.classList.add("active");
@@ -63,46 +64,48 @@ poetsTab.addEventListener("click", () => {
   urduShayari.textContent = "جلد آ رہا ہے...";
 });
 
-// ===== Overlay Function (Simplified) =====
+// ===== Overlay Functions =====
 function showOverlay(sectionId) {
-  const mainContent = document.getElementById("main-content");
   const section = document.getElementById(sectionId);
+  if (!section) return;
 
-  // Hide main content
-  mainContent.style.display = "none";
+  section.classList.add("show");
+  document.body.style.overflow = "hidden"; // prevent background scroll
+}
 
-  // Hide all overlays
-  document.querySelectorAll('.hidden-section').forEach(sec => sec.classList.remove('show'));
-
-  // Show the selected overlay
-  section.classList.add('show');
+function hideOverlay(section) {
+  section.classList.remove("show");
+  document.body.style.overflow = "auto"; // restore scroll
 }
 
 // ===== About Authors =====
-const aboutLink = document.querySelector('a[href="#about-authors"]');
-aboutLink.addEventListener("click", e => {
-  e.preventDefault();
-  showOverlay("about-authors-section");
+const aboutLinks = document.querySelectorAll('a[href="#about-authors"]');
+aboutLinks.forEach(link => {
+  link.addEventListener("click", e => {
+    e.preventDefault();
+    showOverlay("about-authors-section");
+  });
 });
 
 // ===== Future Prospects =====
-const futureLink = document.querySelector('a[href="#future-prospects"]');
-futureLink.addEventListener("click", e => {
-  e.preventDefault();
-  showOverlay("future-prospects-section");
+const futureLinks = document.querySelectorAll('a[href="#future-prospects"]');
+futureLinks.forEach(link => {
+  link.addEventListener("click", e => {
+    e.preventDefault();
+    showOverlay("future-prospects-section");
+  });
 });
 
 // ===== Overlay Close Buttons =====
 document.querySelectorAll('.hidden-section').forEach(section => {
-  const closeBtn = document.createElement('button');
-  closeBtn.textContent = "Close";
-  closeBtn.className = "close-btn";
-  section.appendChild(closeBtn);
-
-  closeBtn.addEventListener('click', () => {
-    section.classList.remove('show');
-    document.getElementById("main-content").style.display = "block";
-  });
+  let closeBtn = section.querySelector('.close-btn');
+  if (!closeBtn) {
+    closeBtn = document.createElement('button');
+    closeBtn.classList.add('close-btn');
+    closeBtn.textContent = "Close";
+    section.appendChild(closeBtn);
+  }
+  closeBtn.addEventListener('click', () => hideOverlay(section));
 });
 
 // ===== Mobile Sidebar =====
@@ -110,19 +113,21 @@ const menuIcon = document.getElementById("menu-icon");
 const sidebar = document.getElementById("sidebar");
 const closeSidebar = document.getElementById("close-sidebar");
 
-// Open sidebar
-menuIcon.addEventListener("click", () => {
-  sidebar.style.left = "0";
-});
+menuIcon.addEventListener("click", () => { sidebar.style.left = "0"; });
+closeSidebar.addEventListener("click", () => { sidebar.style.left = "-100%"; });
 
-// Close sidebar
-closeSidebar.addEventListener("click", () => {
-  sidebar.style.left = "-100%";
-});
-
-// Close sidebar when clicking a link
 sidebar.querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", () => {
+  link.addEventListener("click", e => {
     sidebar.style.left = "-100%";
+    const href = link.getAttribute("href");
+    if (href === "#about-authors") showOverlay("about-authors-section");
+    if (href === "#future-prospects") showOverlay("future-prospects-section");
   });
+});
+
+// ===== Optional ESC Key Close =====
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    document.querySelectorAll('.hidden-section.show').forEach(section => hideOverlay(section));
+  }
 });

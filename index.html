@@ -3,37 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Website</title>
+  <title>Mehfil-e-Dard</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+  <!-- Navbar -->
   <nav class="navbar">
-    <!-- Add this inside <nav class="navbar"> -->
-<div class="menu-icon" id="menu-icon">
-  <i class="fas fa-bars"></i>
-</div>
+    <div class="menu-icon" id="menu-icon">
+      <i class="fas fa-bars"></i>
+    </div>
 
-<!-- Sidebar for mobile menu -->
-<div class="sidebar" id="sidebar">
-  <ul>
-    <li><a href="index.html"><i class="fa-regular fa-house"></i> Home</a></li>
-    <li><a href="#contact"><i class="fa-solid fa-pen-nib"></i> Contact Us</a></li>
-    <li><a href="#about-authors">About the Authors</a></li>
-    <li><a href="#future-prospects">Future Prospects</a></li>
-    <li><a href="#donation">Make a Donation</a></li>
-  </ul>
-  <div class="close-sidebar" id="close-sidebar"><i class="fas fa-times"></i></div>
-</div>
+    <div class="sidebar" id="sidebar">
+      <ul>
+        <li><a href="index.html"><i class="fa-regular fa-house"></i> Home</a></li>
+        <li><a href="#contact"><i class="fa-solid fa-pen-nib"></i> Contact Us</a></li>
+        <li><a href="#about-authors">About the Authors</a></li>
+        <li><a href="#future-prospects">Future Prospects</a></li>
+        <li><a href="#donation">Make a Donation</a></li>
+      </ul>
+      <div class="close-sidebar" id="close-sidebar"><i class="fas fa-times"></i></div>
+    </div>
 
     <div class="logo">
       <img src="Assets/newlogo-removebg-preview.png" alt="Logo" />
     </div>
+
     <ul class="nav-links">
       <li><a href="index.html"><i class="fa-regular fa-house"></i> Home</a></li>
-      <li>
-        <a href="#contact"><i class="fa-solid fa-pen-nib"></i> Contact Us</a>
-      </li>
+      <li><a href="#contact"><i class="fa-solid fa-pen-nib"></i> Contact Us</a></li>
       <li class="dropdown">
         <a href="#"><i class="fa-solid fa-info"></i> More</a>
         <ul class="dropdown-menu">
@@ -45,13 +43,15 @@
     </ul>
   </nav>
 
-  <!-- Wrap all main content in a container -->
+  <!-- Main Content -->
   <div id="main-content">
+    <!-- Welcome Section -->
     <section class="welcome-section">
       <h1><span>Welcome to Mehfil-e-Dard.</span></h1>
       <h2><span>خوش آمدید محفلِ درد میں</span></h2>
     </section>
 
+    <!-- Shayari Section -->
     <section class="shayari-section">
       <div class="tab-options">
         <span class="tab-text active" id="mushaira-tab">Mushaira</span>
@@ -67,13 +67,12 @@
       <button class="shayari-btn" id="shayari-btn">Click Me!</button>
     </section>
 
-    <!-- === CONTACT SECTION === -->
+    <!-- Contact Section -->
     <section id="contact">
       <div class="container">
         <div class="contact-left">
           <h2 class="sub-title">Get in Touch</h2>
           <h3>Bleed ink! ✒️</h3>
-
           <div class="social-icons">
             <a href="https://www.instagram.com/_almostsaidit_/" target="_blank"><i class="fab fa-instagram"></i>Follow us on Instagram</a>
           </div>
@@ -86,43 +85,43 @@
             <textarea name="Poetry" rows="6" placeholder="Pour your mind here..." required></textarea>
             <button type="submit" class="btn btn2">Send!</button>
           </form>
-
           <span id="msg"></span>
         </div>
       </div>
     </section>
   </div>
 
+  <!-- Footer -->
   <footer class="footer">
     <p>&copy; Made by <span>Md Enaitul Hoque</span> and <span>Kamran Asad</span></p>
   </footer>
 
-  <!-- About the Authors Section -->
-<section id="about-authors-section" class="hidden-section">
-  <div class="about-content" id="about-text">
-    <p>Hi, we are Md Enaitul Hoque and Kamran Asad.</p>
-    <p>We are college students, pursuing B.Tech in CSE from Techno International Newtown.</p>
-    <p>Welcome to Mehfil-e-Dard!</p>
-    <p>Connect with us on social media and follow our journey:</p>
-    <p>
-      Md Enaitul Hoque: 
-      <a href="https://www.instagram.com/enaitulhoque/" target="_blank">Instagram</a> | 
-      <a href="https://www.linkedin.com/in/mdenaitulhoque/" target="_blank">LinkedIn</a>
-    </p>
-    <p>
-      Kamran Asad: 
-      <a href="https://www.instagram.com/kamranasad17/" target="_blank">Instagram</a> | 
-      <a href="https://www.linkedin.com/in/kamran-asad-887028258/" target="_blank">LinkedIn</a>
-    </p>
-    <p>Don't forget to follow us for updates and more exciting content!</p>
-  </div>
-</section>
+  <!-- About the Authors Overlay -->
+  <section id="about-authors-section" class="hidden-section">
+    <div class="about-content" id="about-text">
+      <p>Hi, we are Md Enaitul Hoque and Kamran Asad.</p>
+      <p>We are college students, pursuing B.Tech in CSE from Techno International Newtown.</p>
+      <p>Welcome to Mehfil-e-Dard!</p>
+      <p>Connect with us on social media and follow our journey:</p>
+      <p>
+        Md Enaitul Hoque: 
+        <a href="https://www.instagram.com/enaitulhoque/" target="_blank">Instagram</a> | 
+        <a href="https://www.linkedin.com/in/mdenaitulhoque/" target="_blank">LinkedIn</a>
+      </p>
+      <p>
+        Kamran Asad: 
+        <a href="https://www.instagram.com/kamranasad17/" target="_blank">Instagram</a> | 
+        <a href="https://www.linkedin.com/in/kamran-asad-887028258/" target="_blank">LinkedIn</a>
+      </p>
+      <p>Don't forget to follow us for updates and more exciting content!</p>
+    </div>
+    <button class="close-btn">Close</button>
+  </section>
 
-
-  <!-- Future Prospects Section -->
+  <!-- Future Prospects Overlay -->
   <section id="future-prospects-section" class="hidden-section">
-    <div class="about-content">
-      <h1 id="future-text">Our Future Plans</h1>
+    <div class="about-content" id="future-text">
+      <h1 style="color: crimson;">Our Future Plans</h1>
       <p>
         We plan to expand Mehfil-e-Dard into a vibrant online community for poetry lovers — 
         hosting live virtual mushairas, publishing user-submitted works, and launching 
@@ -130,25 +129,27 @@
         from across the world to share the language of emotions.
       </p>
     </div>
+    <button class="close-btn">Close</button>
   </section>
 
+  <!-- Scripts -->
   <script src="script.js"></script>
 
+  <!-- Google Sheets Form Script -->
   <script>
-    // Google Sheets Form
     const scriptURL = 'https://script.google.com/macros/s/AKfycbx4sQxXFozEUv6Y06Hw8YeLjV0CPDmqfyYqpCggnt6QsAb3lbQW1Mi0H3sNXK11bNzb/exec';
     const form = document.forms['submit-to-google-sheet'];
     const msg = document.getElementById("msg");
 
     form.addEventListener('submit', e => {
-        e.preventDefault();
-        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-            .then(response => {
-                msg.innerHTML = "Message sent successfully!";
-                setTimeout(() => { msg.innerHTML = ""; }, 2000);
-                form.reset();
-            })
-            .catch(error => console.error('Error!', error.message));
+      e.preventDefault();
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => {
+          msg.innerHTML = "Message sent successfully!";
+          setTimeout(() => { msg.innerHTML = ""; }, 2000);
+          form.reset();
+        })
+        .catch(error => console.error('Error!', error.message));
     });
   </script>
 </body>
