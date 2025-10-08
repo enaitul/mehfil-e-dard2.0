@@ -9,14 +9,14 @@ body {
   font-family: "Poppins", sans-serif;
   background: url("Assets/background2.png") no-repeat center center fixed;
   background-size: cover;
-  height: 100vh;
+  min-height: 100vh;
   color: #fff;
 }
 
-/* Transparent Fixed Navbar */
+/* Navbar */
 .navbar {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0,0,0,0.5);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,17 +27,14 @@ body {
   z-index: 1000;
 }
 
-/* Logo */
 .logo img {
   width: 180px;
 }
 
-/* Navigation links */
 .nav-links {
   list-style: none;
   display: flex;
   gap: 5rem;
-  margin-right: 2rem;
 }
 
 .nav-links a {
@@ -45,91 +42,70 @@ body {
   text-decoration: none;
   font-size: 1.1rem;
   position: relative;
-  transition: color 0.3s ease;
+  transition: color 0.3s;
 }
 
-/* Hover underline */
 .nav-links a::after {
   content: "";
   position: absolute;
-  left: 0;
   bottom: -4px;
+  left: 0;
   width: 0;
   height: 2px;
   background-color: red;
-  transition: width 0.3s ease;
+  transition: width 0.3s;
 }
 
 .nav-links a:hover::after {
   width: 100%;
 }
 
-.nav-links a:hover {
-  color: red;
-}
+.nav-links a:hover { color: red; }
 
-/* Dropdown Menu */
-.dropdown {
-  position: relative;
-}
-
+/* Dropdown */
+.dropdown { position: relative; }
 .dropdown-menu {
   position: absolute;
   top: 100%;
   left: -50px;
-  background-color: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(6px);
+  background: rgba(0,0,0,0.85);
   border-radius: 8px;
   padding: 10px 0;
   list-style: none;
-  margin: 0;
   display: none;
   min-width: 200px;
   box-shadow: 0 8px 16px rgba(0,0,0,0.3);
   z-index: 1000;
 }
 
+.dropdown:hover .dropdown-menu { display: block; animation: fadeIn 0.3s; }
+
 .dropdown-menu li a {
   display: block;
   padding: 10px 20px;
   color: #fff;
   text-decoration: none;
-  font-weight: 400;
-  transition: background 0.3s ease, padding-left 0.3s ease;
+  transition: background 0.3s, padding-left 0.3s;
 }
 
 .dropdown-menu li a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255,255,255,0.1);
   padding-left: 25px;
 }
 
-.dropdown:hover .dropdown-menu {
-  display: block;
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-/* Fade animations */
+/* Fade animation */
 @keyframes fadeIn {
   0% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }
 }
-
-@keyframes fadeOutUp {
-  0% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(-20px); }
-}
-
-/* Welcome section */
+/* Welcome Section */
 .welcome-section {
   text-align: center;
   margin-top: 150px;
-  color: #fff;
   font-family: Arial, sans-serif;
 }
 
-.welcome-section h1,
-.welcome-section h2 {
-  display: block;
+.welcome-section h1, .welcome-section h2 {
   margin: 0.5rem 0;
   font-size: 2.5rem;
 }
@@ -137,127 +113,103 @@ body {
 .welcome-section span {
   position: relative;
   display: inline-block;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
   transition: all 0.3s ease;
 }
 
-.welcome-section h1 span::after,
-.welcome-section h2 span::after {
-  content: "";
-  position: absolute;
-  bottom: -4px;
-  width: 0;
-  height: 2px;
-  background-color: red;
-  transition: width 0.5s ease;
-}
+/* Delay fadeIn for each span if needed */
+.welcome-section h2 span { animation-delay: 0.3s; }
 
-.welcome-section h1 span::after { left: 0; }
-.welcome-section h2 span::after { right: 0; }
-
+/* Hover effect */
 .welcome-section span:hover {
   font-weight: bold;
   font-style: italic;
 }
 
-.welcome-section h1 span:hover::after,
-.welcome-section h2 span:hover::after {
+/* Underline effect on hover */
+.welcome-section span::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: red;
+  transition: width 0.3s ease; /* smooth width animation */
+}
+
+.welcome-section span:hover::after {
   width: 100%;
-}
-
-.welcome-section span {
-  opacity: 0;
-  animation: fadeIn 1s forwards;
-}
-
-.welcome-section h2 span {
-  animation-delay: 0.3s;
 }
 
 /* Shayari Section */
 .shayari-section { text-align: center; margin-top: 50px; }
-.tab-options { display: flex; justify-content: center; gap: 4rem; margin-bottom: 2rem; font-family: Arial, sans-serif; font-size: 2rem; }
-.tab-text { cursor: pointer; position: relative; transition: color 0.3s ease; color: #fff; }
+.tab-options { display: flex; justify-content: center; gap: 4rem; margin-bottom: 2rem; font-size: 2rem; font-family: Arial, sans-serif; }
+.tab-text { cursor: pointer; position: relative; transition: color 0.3s; }
 .tab-text.active { font-weight: bold; color: red; }
-.tab-text.active::after { content: ""; position: absolute; left: 0; bottom: -5px; width: 100%; height: 3px; background-color: red; }
-.tab-text:not(.active)::after { content: ""; position: absolute; left: 0; bottom: -5px; width: 0; height: 3px; background-color: red; transition: width 0.3s ease; }
+.tab-text.active::after { content: ""; position: absolute; bottom: -5px; left: 0; width: 100%; height: 3px; background-color: red; }
+.tab-text:not(.active)::after { content: ""; position: absolute; bottom: -5px; left: 0; width: 0; height: 3px; background-color: red; transition: width 0.3s; }
 .tab-text:not(.active):hover::after { width: 100%; }
 
 .shayari-box {
-  background-color: rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.2);
   border-radius: 12px;
   padding: 2rem;
-  margin-bottom: 1.5rem;
   min-height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-bottom: 1.5rem;
 }
 
-.shayari-box p { margin: 0.5rem 0; font-size: 1.5rem; }
-.shayari-btn { padding: 0.7rem 1.5rem; font-size: 1rem; border: none; border-radius: 8px; background-color: red; color: #fff; cursor: pointer; transition: background 0.3s ease; }
-.shayari-btn:hover { background-color: darkred; }
+.shayari-box p { font-size: 1.5rem; margin: 0.5rem 0; }
+#english-shayari { font-family:'Times New Roman', Times, serif; }
+#urdu-shayari { font-family: Arial, sans-serif; }
 
-/* Shayari fonts */
-#english-shayari { font-family:'Times New Roman', Times, serif; font-size: 1.6rem; line-height: 1.5; margin-bottom: 0.5rem; white-space: pre-wrap; letter-spacing: 1px; }
-#urdu-shayari { font-family: "Arial", sans-serif; font-size: 1.6rem; line-height: 1.5; }
+.shayari-btn { padding: 0.7rem 1.5rem; border: none; border-radius: 8px; background: red; color: #fff; cursor: pointer; transition: background 0.3s; }
+.shayari-btn:hover { background: darkred; }
 
 /* Contact Section */
-#contact { margin-top: 100px; padding: 5rem 2rem; background-color: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; color: #fff; font-family: Arial, sans-serif; }
-#contact .container { display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1000px; gap: 3rem; }
+#contact { margin-top: 100px; padding: 5rem 2rem; background: rgba(0,0,0,0.6); display: flex; justify-content: center; font-family: Arial, sans-serif; }
+#contact .container { display: flex; flex-wrap: wrap; gap: 3rem; max-width: 1000px; }
 .contact-left, .contact-right { flex: 1; min-width: 300px; }
 .contact-left h2.sub-title { color: red; font-size: 2rem; margin-bottom: 0.5rem; }
-.contact-left h3 { font-size: 1.5rem; margin-bottom: 1.5rem; font-style: italic; }
-.contact-left .social-icons a { display: inline-block; color: #fff; font-size: 1.2rem; margin-top: 1rem; text-decoration: none; border: 2px solid red; padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.3s ease; }
-.contact-left .social-icons a i { margin-right: 0.5rem; }
-.contact-left .social-icons a:hover { background-color: red; color: #fff; transform: scale(1.05); }
-.contact-right form { display: flex; flex-direction: column; gap: 1rem; }
-.contact-right input, .contact-right textarea { padding: 0.7rem 1rem; border: 2px solid red; border-radius: 8px; background-color: rgba(255,255,255,0.05); color: #fff; font-size: 1rem; transition: all 0.3s ease; }
-.contact-right input::placeholder, .contact-right textarea::placeholder { color: #ccc; }
-.contact-right input:focus, .contact-right textarea:focus { outline: none; border-color: #ff4d4d; background-color: rgba(255,255,255,0.1); }
-.contact-right button.btn2 { padding: 0.7rem 1.5rem; font-size: 1rem; border: none; border-radius: 8px; background-color: red; color: #fff; cursor: pointer; transition: background 0.3s ease, transform 0.2s ease; }
-.contact-right button.btn2:hover { background-color: darkred; transform: scale(1.05); }
-#msg { display: block; margin-top: 1rem; font-weight: bold; color: #00ff00; font-size: 1rem; }
+.contact-left h3 { font-style: italic; margin-bottom: 1.5rem; font-size: 1.5rem; }
+.contact-left .social-icons a { color: #fff; text-decoration: none; border: 2px solid red; padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.3s; display: inline-block; margin-top: 1rem; }
+.contact-left .social-icons a:hover { background: red; transform: scale(1.05); }
 
-/* Overlay Sections (About Authors & Future Prospects) */
+.contact-right form { display: flex; flex-direction: column; gap: 1rem; }
+.contact-right input, .contact-right textarea { border: 2px solid red; border-radius: 8px; background: rgba(255,255,255,0.05); padding: 0.7rem 1rem; color: #fff; }
+.contact-right input::placeholder, .contact-right textarea::placeholder { color: #ccc; }
+.contact-right button.btn2 { border: none; border-radius: 8px; background: red; color: #fff; cursor: pointer; padding: 0.7rem 1.5rem; transition: background 0.3s; }
+.contact-right button.btn2:hover { background: darkred; transform: scale(1.05); }
+
+#msg { color: #00ff00; font-weight: bold; margin-top: 1rem; }
+
+/* Overlay Sections */
 .hidden-section {
+  display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.9);
-  display: flex;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.95);
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   text-align: center;
   padding: 2rem;
-  color: #fff;
-  font-family: 'Courier New', Courier, monospace;
-  z-index: 1001;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s ease;
-  flex-direction: column;
   overflow-y: auto;
-}
-
-.hidden-section.show {
-  opacity: 1;
-  pointer-events: all;
+  z-index: 1001;
 }
 
 .hidden-section .about-content {
   max-width: 800px;
-  text-align: center;
   font-size: 1.5rem;
-  line-height: 1.8;
-  font-family: Arial, sans-serif;
   padding: 2rem;
   border-radius: 12px;
-  background-color: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.7);
   box-shadow: 0 0 20px rgba(255,0,0,0.5);
-  transform: translateY(0);
-  transition: transform 0.3s ease;
 }
 
 .hidden-section .close-btn {
@@ -266,95 +218,114 @@ body {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  background-color: red;
+  background: red;
   color: #fff;
-  font-size: 1rem;
-  transition: background 0.3s ease, transform 0.2s ease;
 }
-
-.hidden-section .close-btn:hover {
-  background-color: darkred;
-  transform: scale(1.05);
-}
+.hidden-section .close-btn:hover { background: darkred; transform: scale(1.05); }
 
 /* Footer */
-.footer {
-  background-color: rgba(0,0,0,0.7);
-  color: #fff;
-  text-align: center;
-  padding: 1rem 0;
-  font-size: 1rem;
-  width: 100%;
-  position: relative;
-  font-family: "Poppins", sans-serif;
-}
+.footer { background: rgba(0,0,0,0.7); color: #fff; text-align: center; padding: 1rem 0; font-family: Poppins, sans-serif; }
+.footer span { color: red; font-weight: 600; transition: color 0.3s; }
+.footer span:hover { color: #ff4d4d; }
 
-.footer span {
-  color: red;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.footer span:hover {
-  color: #ff4d4d;
-}
-
-/* Menu icon for mobile */
+/* Hamburger Menu */
 .menu-icon {
   display: none;
-  font-size: 2rem;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 20px;
+  width: 25px;
   cursor: pointer;
-  color: #fff;
 }
+
+.menu-icon .bar {
+  height: 3px;
+  width: 100%;
+  background: #fff;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+/* Add spinning animation for menu icon */
+.menu-icon {
+  transition: transform 0.5s ease; /* smooth spin */
+}
+
+.menu-icon.active {
+  transform: rotate(360deg); /* spin full circle when clicked */
+}
+
+/* Transform bars into cross */
+.menu-icon.active .bar:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.menu-icon.active .bar:nth-child(2) { opacity: 0; }
+.menu-icon.active .bar:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
 /* Sidebar */
 .sidebar {
   position: fixed;
-  top: 0;
-  left: -100%;
+  top: 70px;
+  right: -100%;
   width: 250px;
-  height: 100%;
-  background-color: rgba(0,0,0,0.95);
+  height: calc(100% - 70px);
+  background: rgba(0,0,0,0.95);
+  padding-top: 2rem;
+  transition: right 0.3s ease;
   z-index: 2000;
-  transition: 0.3s;
-  padding-top: 4rem;
+  display: flex;
+  flex-direction: column;
 }
 
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+.sidebar.open { right: 0; }
 
-.sidebar ul li {
-  margin: 1.5rem 0;
-  text-align: center;
-}
-
-.sidebar ul li a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 1.2rem;
-  display: block;
-}
-
-.sidebar ul li a:hover {
-  color: red;
-}
-
-.close-sidebar {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 2rem;
-  cursor: pointer;
-  color: #fff;
-}
-
+.sidebar ul { list-style: none; padding: 0 1rem; display: flex; flex-direction: column; gap: 1.5rem; }
+.sidebar ul li a { color: #fff; text-decoration: none; font-size: 1.2rem; }
+.sidebar ul li a:hover { color: red; }
 /* Responsive */
 @media (max-width: 768px) {
+  /* Hide regular nav links */
   .nav-links { display: none; }
-  .menu-icon { display: block; }
+
+  /* Navbar adjustments */
+  .navbar {
+    padding: 0.5rem 2rem;  /* decrease navbar height */
+  }
+
+ /* Logo adjustments */
+.logo {
+  margin-left: 0;        /* push logo to extreme left */
+  position: relative;    
+  top: 10px;              /* move logo slightly down, adjust as needed */
+}
+
+.logo img {
+  width: 150px;          /* optional: smaller logo for mobile */
+}
+
+
+  /* Menu icon adjustments */
+  .menu-icon {
+    display: flex;         
+    order: 2;              
+    margin-left: 300px;     /* push menu icon to far right */
+    position: relative;    
+    top: -25px;             /* move slightly upward */
+    cursor: pointer;
+    z-index: 1002;
+  }
+
+  /* Transform bars into cross when active */
+  .menu-icon.active .bar:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .menu-icon.active .bar:nth-child(2) { opacity: 0; }
+  .menu-icon.active .bar:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  /* Sidebar adjustments */
+  .sidebar {
+    width: 250px;
+    right: -100%;
+    top: 80px;                  /* align below reduced navbar */
+    height: calc(100% - 60px);
+  }
+
+  /* Text and section adjustments */
   .welcome-section h1, .welcome-section h2 { font-size: 2rem; }
   .tab-options { font-size: 1.5rem; gap: 2rem; }
   .shayari-box p { font-size: 1.2rem; }
@@ -363,12 +334,6 @@ body {
   .contact-right input, .contact-right textarea { font-size: 0.95rem; }
   .contact-right button.btn2 { font-size: 0.95rem; padding: 0.5rem 1rem; }
   .hidden-section .about-content { width: 90%; font-size: 1.2rem; padding: 1.5rem; }
-  .hidden-section .close-btn { margin-top: 20px; }
+
   body { background: url("Assets/background3.jpg") no-repeat center center fixed; background-size: cover; }
 }
-
-/* Default background for desktop */
-/* body {
-  background: url("Assets/background2.png") no-repeat center center fixed;
-  background-size: cover;
-} */

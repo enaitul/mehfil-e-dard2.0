@@ -10,26 +10,22 @@
 <body>
   <!-- Navbar -->
   <nav class="navbar">
-    <div class="menu-icon" id="menu-icon">
-      <i class="fas fa-bars"></i>
+    <div class="navbar-content">
+      <!-- Logo on left -->
+      <div class="logo">
+        <img src="Assets/newlogo-removebg-preview.png" alt="Logo" />
+      </div>
+
+      <!-- Menu icon on right -->
+      <div class="menu-icon" id="menu-icon">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
     </div>
 
-    <div class="sidebar" id="sidebar">
-      <ul>
-        <li><a href="index.html"><i class="fa-regular fa-house"></i> Home</a></li>
-        <li><a href="#contact"><i class="fa-solid fa-pen-nib"></i> Contact Us</a></li>
-        <li><a href="#about-authors">About the Authors</a></li>
-        <li><a href="#future-prospects">Future Prospects</a></li>
-        <li><a href="#donation">Make a Donation</a></li>
-      </ul>
-      <div class="close-sidebar" id="close-sidebar"><i class="fas fa-times"></i></div>
-    </div>
-
-    <div class="logo">
-      <img src="Assets/newlogo-removebg-preview.png" alt="Logo" />
-    </div>
-
-    <ul class="nav-links">
+    <!-- Regular nav links (for larger screens) -->
+    <ul class="nav-links" id="nav-links">
       <li><a href="index.html"><i class="fa-regular fa-house"></i> Home</a></li>
       <li><a href="#contact"><i class="fa-solid fa-pen-nib"></i> Contact Us</a></li>
       <li class="dropdown">
@@ -41,6 +37,17 @@
         </ul>
       </li>
     </ul>
+
+    <!-- Sidebar menu for phones -->
+    <div class="sidebar" id="sidebar">
+      <ul>
+        <li><a href="index.html"><i class="fa-regular fa-house"></i> Home</a></li>
+        <li><a href="#contact"><i class="fa-solid fa-pen-nib"></i> Contact Us</a></li>
+        <li><a href="#about-authors">About the Authors</a></li>
+        <li><a href="#future-prospects">Future Prospects</a></li>
+        <li><a href="#donation">Make a Donation</a></li>
+      </ul>
+    </div>
   </nav>
 
   <!-- Main Content -->

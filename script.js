@@ -28,7 +28,6 @@ const shayaris = [{ english: "Ab mujhe uski yaad nahi aati, ab woh mujhe yaad ho
 { english: "Intezaar itna karo ki Khuda bhi kahe, le le, haq hai tera.", urdu: "انتظار اتنا کرو کہ خدا بھی کہے، لے لے، حق ہے تیرا۔", audio: "Assets/HaqK.m4a" }, { english: "Hazaar gham hain, khulaasa kaun kare? Muskura dete hain, ab tamaasha kaun kare?", urdu: "ہزار غم ہیں، خلاصہ کون کرے؟ مسکرا دیتے ہیں، اب تماشہ کون کرے؟", audio: "Assets/TamashaK.m4a" }];
 
 let currentShayari = -1;
-
 // ===== Shayari Section =====
 mushairaTab.addEventListener("click", () => {
   mushairaTab.classList.add("active");
@@ -63,33 +62,34 @@ poetsTab.addEventListener("click", () => {
   englishShayari.textContent = "Coming Soon...";
   urduShayari.textContent = "جلد آ رہا ہے...";
 });
-
 // ===== Overlay Functions =====
 function showOverlay(sectionId) {
   const section = document.getElementById(sectionId);
   if (!section) return;
 
-  section.classList.add("show");
+  section.style.display = "flex";  // make it visible
+  section.classList.add("show");    // optional: for fade-in animation
   document.body.style.overflow = "hidden"; // prevent background scroll
 }
 
 function hideOverlay(section) {
-  section.classList.remove("show");
+  if (!section) return;
+
+  section.style.display = "none";   // hide overlay
+  section.classList.remove("show"); // remove animation class if used
   document.body.style.overflow = "auto"; // restore scroll
 }
 
-// ===== About Authors =====
-const aboutLinks = document.querySelectorAll('a[href="#about-authors"]');
-aboutLinks.forEach(link => {
+// ===== About Authors Overlay =====
+document.querySelectorAll('a[href="#about-authors"]').forEach(link => {
   link.addEventListener("click", e => {
     e.preventDefault();
     showOverlay("about-authors-section");
   });
 });
 
-// ===== Future Prospects =====
-const futureLinks = document.querySelectorAll('a[href="#future-prospects"]');
-futureLinks.forEach(link => {
+// ===== Future Prospects Overlay =====
+document.querySelectorAll('a[href="#future-prospects"]').forEach(link => {
   link.addEventListener("click", e => {
     e.preventDefault();
     showOverlay("future-prospects-section");
@@ -108,26 +108,58 @@ document.querySelectorAll('.hidden-section').forEach(section => {
   closeBtn.addEventListener('click', () => hideOverlay(section));
 });
 
+
 // ===== Mobile Sidebar =====
 const menuIcon = document.getElementById("menu-icon");
 const sidebar = document.getElementById("sidebar");
 const closeSidebar = document.getElementById("close-sidebar");
 
-menuIcon.addEventListener("click", () => { sidebar.style.left = "0"; });
-closeSidebar.addEventListener("click", () => { sidebar.style.left = "-100%"; });
+menuIcon.addEventListener("click", () => {
+  sidebar.style.right = sidebar.style.right === "0px" ? "-100%" : "0";
+  menuIcon.classList.toggle("active"); // spin hamburger
+});
 
-sidebar.querySelectorAll("a").forEach(link => {
+closeSidebar.addEventListener("click", () => {
+  sidebar.style.right = "-100%";
+  menuIcon.classList.remove("active");
+});
+
+// ===== Overlay & Sidebar Links =====
+document.querySelectorAll('a[href="#about-authors"], a[href="#future-prospects"], a[href="#contact"]').forEach(link => {
   link.addEventListener("click", e => {
-    sidebar.style.left = "-100%";
+    e.preventDefault();
+
     const href = link.getAttribute("href");
+
+    // Overlay sections
     if (href === "#about-authors") showOverlay("about-authors-section");
-    if (href === "#future-prospects") showOverlay("future-prospects-section");
+    else if (href === "#future-prospects") showOverlay("future-prospects-section");
+    // Scroll to contact section
+    else if (href === "#contact") document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+
+    // Close sidebar if open
+    sidebar.style.right = "-100%";
+    menuIcon.classList.remove("active");
   });
+});
+
+// ===== Overlay Close Buttons =====
+document.querySelectorAll('.hidden-section').forEach(section => {
+  let closeBtn = section.querySelector('.close-btn');
+  if (!closeBtn) {
+    closeBtn = document.createElement('button');
+    closeBtn.classList.add('close-btn');
+    closeBtn.textContent = "Close";
+    section.appendChild(closeBtn);
+  }
+  closeBtn.addEventListener('click', () => hideOverlay(section));
 });
 
 // ===== Optional ESC Key Close =====
 document.addEventListener("keydown", e => {
   if (e.key === "Escape") {
     document.querySelectorAll('.hidden-section.show').forEach(section => hideOverlay(section));
+    sidebar.style.right = "-100%";
+    menuIcon.classList.remove("active");
   }
 });
