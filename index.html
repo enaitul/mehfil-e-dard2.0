@@ -11,12 +11,9 @@
   <!-- Navbar -->
   <nav class="navbar">
     <div class="navbar-content">
-      <!-- Logo on left -->
       <div class="logo">
         <img src="Assets/newlogo-removebg-preview.png" alt="Logo" />
       </div>
-
-      <!-- Menu icon on right -->
       <div class="menu-icon" id="menu-icon">
         <div class="bar"></div>
         <div class="bar"></div>
@@ -24,10 +21,10 @@
       </div>
     </div>
 
-    <!-- Regular nav links (for larger screens) -->
     <ul class="nav-links" id="nav-links">
       <li><a href="index.html"><i class="fa-regular fa-house"></i> Home</a></li>
       <li><a href="#contact"><i class="fa-solid fa-pen-nib"></i> Contact Us</a></li>
+      <li><a href="index2.html"><i class="fa-solid fa-book"></i> Author's Choices</a></li>
       <li class="dropdown">
         <a href="#"><i class="fa-solid fa-info"></i> More</a>
         <ul class="dropdown-menu">
@@ -38,7 +35,6 @@
       </li>
     </ul>
 
-    <!-- Sidebar menu for phones -->
     <div class="sidebar" id="sidebar">
       <ul>
         <li><a href="index.html"><i class="fa-regular fa-house"></i> Home</a></li>
@@ -65,13 +61,42 @@
         <span class="tab-text" id="poets-tab">Poet's Society</span>
       </div>
 
+      <!-- Mushaira Content -->
       <div class="shayari-box" id="shayari-box">
         <p id="english-shayari">Aapka humari Mehfil mai swagat hai. <br> Press the button to begin.</p>
         <p id="urdu-shayari"></p>
         <audio id="shayari-audio"></audio>
       </div>
-
       <button class="shayari-btn" id="shayari-btn">Click Me!</button>
+
+      <!-- ===== POET'S SOCIETY FEED (NEW) ===== -->
+      <div id="poets-society" style="display:none;">
+
+        <!-- Upload Form -->
+        <div class="ps-upload-card">
+          <h3 class="ps-upload-title"><i class="fa-solid fa-feather-pointed"></i> Share your poetry</h3>
+          <div class="ps-upload-form">
+            <input type="text" id="ps-name" placeholder="Your name / pen name" maxlength="50" />
+            <textarea id="ps-content" placeholder="Pour your words here..." rows="4" maxlength="1000"></textarea>
+            <div class="ps-upload-row">
+              <label class="ps-file-btn" for="ps-image-input">
+                <i class="fa-solid fa-image"></i> Add Image
+                <input type="file" id="ps-image-input" accept="image/*" style="display:none;" />
+              </label>
+              <label class="ps-file-btn" for="ps-pdf-input">
+                <i class="fa-solid fa-file-pdf"></i> Add PDF
+                <input type="file" id="ps-pdf-input" accept=".pdf" style="display:none;" />
+              </label>
+              <span id="ps-file-label" class="ps-file-label-text"></span>
+            </div>
+            <button class="ps-post-btn" id="ps-post-btn"><i class="fa-solid fa-paper-plane"></i> Post</button>
+          </div>
+        </div>
+
+        <!-- Feed -->
+        <div id="ps-feed"></div>
+      </div>
+      <!-- ===== END POET'S SOCIETY ===== -->
     </section>
 
     <!-- Contact Section -->
@@ -84,7 +109,6 @@
             <a href="https://www.instagram.com/_almostsaidit_/" target="_blank"><i class="fab fa-instagram"></i>Follow us on Instagram</a>
           </div>
         </div>
-
         <div class="contact-right">
           <form name="submit-to-google-sheet">
             <input type="text" name="Name" placeholder="Your Name" required>
@@ -139,7 +163,39 @@
     <button class="close-btn">Close</button>
   </section>
 
-  <!-- Scripts -->
+  <!-- ===== DONATION MODAL (NEW) ===== -->
+  <section id="donation-section" class="hidden-section">
+    <div class="about-content donation-content">
+      <h1 style="color: crimson; margin-bottom: 0.5rem;">💖 Support Mehfil-e-Dard</h1>
+      <p style="color:#ccc; margin-bottom:1.5rem; font-size:1rem;">Your support helps us grow this community of words.</p>
+
+      <!-- QR Placeholder -->
+      <div class="donation-qr">
+        <div class="qr-placeholder">
+          <i class="fa-solid fa-qrcode" style="font-size:3rem; color:crimson;"></i>
+          <p style="font-size:0.85rem; color:#aaa; margin-top:0.4rem;">Scan to pay via UPI</p>
+        </div>
+      </div>
+
+      <div class="donation-form">
+        <input type="text" id="donor-name" placeholder="Your Name" maxlength="60" />
+        <input type="number" id="donor-amount" placeholder="Amount (₹)" min="1" />
+
+        <p style="font-size:0.9rem; color:#aaa; margin-bottom:0.4rem;">Choose Payment Method</p>
+        <div class="payment-methods">
+          <button class="pay-method-btn active" data-method="UPI">📱 UPI</button>
+          <button class="pay-method-btn" data-method="Card">💳 Card</button>
+          <button class="pay-method-btn" data-method="NetBanking">🏦 Net Banking</button>
+        </div>
+
+        <button class="donate-btn" id="donate-btn"><i class="fa-solid fa-heart"></i> Donate</button>
+        <p id="donate-msg" class="donate-success-msg" style="display:none;"></p>
+      </div>
+    </div>
+    <button class="close-btn">Close</button>
+  </section>
+  <!-- ===== END DONATION MODAL ===== -->
+
   <script src="script.js"></script>
 
   <!-- Google Sheets Form Script -->

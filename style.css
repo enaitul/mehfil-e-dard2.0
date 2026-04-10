@@ -17,6 +17,8 @@ body {
 .navbar {
   width: 100%;
   background-color: rgba(0,0,0,0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -67,8 +69,9 @@ body {
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: -50px;
+  left: -70px;
   background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(12px);
   border-radius: 8px;
   padding: 10px 0;
   list-style: none;
@@ -98,6 +101,12 @@ body {
   0% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }
 }
+
+@keyframes slideInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
 /* Welcome Section */
 .welcome-section {
   text-align: center;
@@ -118,16 +127,13 @@ body {
   transition: all 0.3s ease;
 }
 
-/* Delay fadeIn for each span if needed */
 .welcome-section h2 span { animation-delay: 0.3s; }
 
-/* Hover effect */
 .welcome-section span:hover {
   font-weight: bold;
   font-style: italic;
 }
 
-/* Underline effect on hover */
 .welcome-section span::after {
   content: "";
   position: absolute;
@@ -136,7 +142,7 @@ body {
   width: 0;
   height: 2px;
   background-color: red;
-  transition: width 0.3s ease; /* smooth width animation */
+  transition: width 0.3s ease;
 }
 
 .welcome-section span:hover::after {
@@ -154,6 +160,7 @@ body {
 
 .shayari-box {
   background: rgba(0,0,0,0.2);
+  backdrop-filter: blur(8px);
   border-radius: 12px;
   padding: 2rem;
   min-height: 150px;
@@ -161,14 +168,391 @@ body {
   flex-direction: column;
   justify-content: center;
   margin-bottom: 1.5rem;
+  border: 1px solid rgba(255,255,255,0.07);
 }
 
 .shayari-box p { font-size: 1.5rem; margin: 0.5rem 0; }
 #english-shayari { font-family:'Times New Roman', Times, serif; }
 #urdu-shayari { font-family: Arial, sans-serif; }
 
-.shayari-btn { padding: 0.7rem 1.5rem; border: none; border-radius: 8px; background: red; color: #fff; cursor: pointer; transition: background 0.3s; }
-.shayari-btn:hover { background: darkred; }
+.shayari-btn {
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 4px 15px rgba(231,76,60,0.35);
+}
+.shayari-btn:hover {
+  background: linear-gradient(135deg, #a93226, #c0392b);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(231,76,60,0.5);
+}
+
+/* ===== POET'S SOCIETY STYLES (NEW) ===== */
+#poets-society {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 1rem 3rem;
+  animation: fadeIn 0.4s ease;
+}
+
+/* Upload Card */
+.ps-upload-card {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+.ps-upload-title {
+  color: crimson;
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ps-upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.ps-upload-form input[type="text"],
+.ps-upload-form textarea {
+  background: rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: 10px;
+  color: #fff;
+  padding: 0.7rem 1rem;
+  font-size: 0.95rem;
+  font-family: "Poppins", sans-serif;
+  resize: vertical;
+  transition: border-color 0.3s;
+  outline: none;
+}
+
+.ps-upload-form input[type="text"]:focus,
+.ps-upload-form textarea:focus {
+  border-color: crimson;
+}
+
+.ps-upload-form input::placeholder,
+.ps-upload-form textarea::placeholder {
+  color: rgba(255,255,255,0.4);
+}
+
+.ps-upload-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.ps-file-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(220,20,60,0.15);
+  border: 1px solid rgba(220,20,60,0.4);
+  color: #ff6b6b;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  font-family: "Poppins", sans-serif;
+}
+
+.ps-file-btn:hover {
+  background: rgba(220,20,60,0.3);
+  color: #fff;
+}
+
+.ps-file-label-text {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  font-style: italic;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ps-post-btn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 0.65rem 1.6rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(220,20,60,0.3);
+  font-family: "Poppins", sans-serif;
+}
+
+.ps-post-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220,20,60,0.5);
+  background: linear-gradient(135deg, #a93226, #c0392b);
+}
+
+/* Empty feed message */
+.ps-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: rgba(255,255,255,0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1rem;
+}
+
+/* Post Card */
+.ps-card {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+  animation: slideInUp 0.45s ease both;
+  transition: box-shadow 0.3s, transform 0.3s;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.ps-card:hover {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  transform: translateY(-2px);
+}
+
+/* Card header */
+.ps-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.ps-avatar {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, crimson, #7b0000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #fff;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.ps-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.ps-card-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.ps-card-time {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+}
+
+/* Card body */
+.ps-card-text {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.9);
+  font-family: 'Georgia', serif;
+  white-space: pre-wrap;
+  margin-bottom: 0.75rem;
+}
+
+.ps-card-image {
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0.75rem 0;
+}
+
+.ps-card-image img {
+  width: 100%;
+  max-height: 340px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.ps-card-image img:hover {
+  transform: scale(1.02);
+}
+
+.ps-card-pdf {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.6rem 0;
+  padding: 0.5rem 0.9rem;
+  background: rgba(220,20,60,0.1);
+  border: 1px solid rgba(220,20,60,0.3);
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.ps-pdf-link {
+  color: #ff6b6b;
+  text-decoration: none;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: color 0.3s;
+}
+
+.ps-pdf-link:hover { color: #fff; }
+
+/* Card actions */
+.ps-card-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+.ps-like-btn, .ps-comment-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.65);
+  padding: 0.4rem 0.85rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  transition: all 0.25s;
+  font-family: "Poppins", sans-serif;
+}
+
+.ps-like-btn:hover {
+  border-color: crimson;
+  color: #ff6b6b;
+  background: rgba(220,20,60,0.1);
+}
+
+.ps-like-btn.liked {
+  color: crimson;
+  border-color: crimson;
+  background: rgba(220,20,60,0.12);
+}
+
+.ps-comment-toggle-btn:hover {
+  border-color: rgba(255,255,255,0.4);
+  color: #fff;
+}
+
+/* Comments section */
+.ps-comments-section {
+  margin-top: 0.75rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.ps-comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.ps-comment {
+  background: rgba(255,255,255,0.04);
+  border-radius: 8px;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.5;
+}
+
+.ps-comment-author {
+  color: #ff6b6b;
+  font-weight: 600;
+  margin-right: 0.35rem;
+}
+
+.ps-comment-input-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ps-comment-input {
+  flex: 1;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.13);
+  border-radius: 8px;
+  color: #fff;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.85rem;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+  transition: border-color 0.3s;
+}
+
+.ps-comment-input:focus {
+  border-color: crimson;
+}
+
+.ps-comment-input::placeholder {
+  color: rgba(255,255,255,0.35);
+}
+
+.ps-comment-post-btn {
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  padding: 0.5rem 0.85rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.3s;
+}
+
+.ps-comment-post-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 10px rgba(220,20,60,0.4);
+}
+
+/* ===== END POET'S SOCIETY ===== */
 
 /* Contact Section */
 #contact { margin-top: 100px; padding: 5rem 2rem; background: rgba(0,0,0,0.6); display: flex; justify-content: center; font-family: Arial, sans-serif; }
@@ -180,10 +564,11 @@ body {
 .contact-left .social-icons a:hover { background: red; transform: scale(1.05); }
 
 .contact-right form { display: flex; flex-direction: column; gap: 1rem; }
-.contact-right input, .contact-right textarea { border: 2px solid red; border-radius: 8px; background: rgba(255,255,255,0.05); padding: 0.7rem 1rem; color: #fff; }
+.contact-right input, .contact-right textarea { border: 2px solid red; border-radius: 8px; background: rgba(255,255,255,0.05); padding: 0.7rem 1rem; color: #fff; outline: none; transition: box-shadow 0.3s; }
+.contact-right input:focus, .contact-right textarea:focus { box-shadow: 0 0 0 3px rgba(220,20,60,0.25); }
 .contact-right input::placeholder, .contact-right textarea::placeholder { color: #ccc; }
-.contact-right button.btn2 { border: none; border-radius: 8px; background: red; color: #fff; cursor: pointer; padding: 0.7rem 1.5rem; transition: background 0.3s; }
-.contact-right button.btn2:hover { background: darkred; transform: scale(1.05); }
+.contact-right button.btn2 { border: none; border-radius: 50px; background: linear-gradient(135deg, #c0392b, #e74c3c); color: #fff; cursor: pointer; padding: 0.75rem 1.5rem; transition: all 0.3s; font-weight: 600; }
+.contact-right button.btn2:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(231,76,60,0.4); }
 
 #msg { color: #00ff00; font-weight: bold; margin-top: 1rem; }
 
@@ -193,7 +578,8 @@ body {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0,0,0,0.95);
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(6px);
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -207,21 +593,141 @@ body {
   max-width: 800px;
   font-size: 1.5rem;
   padding: 2rem;
-  border-radius: 12px;
-  background: rgba(0,0,0,0.7);
-  box-shadow: 0 0 20px rgba(255,0,0,0.5);
+  border-radius: 16px;
+  background: rgba(10,10,10,0.8);
+  box-shadow: 0 0 30px rgba(255,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.08);
 }
 
 .hidden-section .close-btn {
   margin-top: 30px;
-  padding: 0.7rem 1.5rem;
+  padding: 0.7rem 1.8rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 50px;
   cursor: pointer;
-  background: red;
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(220,20,60,0.3);
+}
+.hidden-section .close-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(220,20,60,0.5); }
+
+/* ===== DONATION MODAL STYLES (NEW) ===== */
+.donation-content {
+  text-align: center;
+  max-width: 480px !important;
+  font-size: 1rem !important;
+}
+
+.donation-qr {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0 1.5rem;
+}
+
+.qr-placeholder {
+  width: 110px;
+  height: 110px;
+  border: 2px dashed crimson;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(220,20,60,0.07);
+}
+
+.donation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  text-align: left;
+}
+
+.donation-form input {
+  background: rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: 10px;
+  color: #fff;
+  padding: 0.7rem 1rem;
+  font-size: 0.95rem;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+  transition: border-color 0.3s;
+}
+
+.donation-form input:focus {
+  border-color: crimson;
+}
+
+.donation-form input::placeholder {
+  color: rgba(255,255,255,0.35);
+}
+
+.payment-methods {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.25rem;
+}
+
+.pay-method-btn {
+  flex: 1;
+  min-width: 90px;
+  background: rgba(255,255,255,0.05);
+  border: 1.5px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.7);
+  padding: 0.5rem 0.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.25s;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+}
+
+.pay-method-btn:hover,
+.pay-method-btn.active {
+  border-color: crimson;
+  background: rgba(220,20,60,0.15);
   color: #fff;
 }
-.hidden-section .close-btn:hover { background: darkred; transform: scale(1.05); }
+
+.donate-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(220,20,60,0.35);
+  font-family: "Poppins", sans-serif;
+  margin-top: 0.25rem;
+}
+
+.donate-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(220,20,60,0.55);
+}
+
+.donate-success-msg {
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 0.6rem 0;
+  animation: fadeIn 0.4s ease;
+}
+
+/* ===== END DONATION ===== */
 
 /* Footer */
 .footer { background: rgba(0,0,0,0.7); color: #fff; text-align: center; padding: 1rem 0; font-family: Poppins, sans-serif; }
@@ -236,6 +742,7 @@ body {
   height: 20px;
   width: 25px;
   cursor: pointer;
+  transition: transform 0.5s ease;
 }
 
 .menu-icon .bar {
@@ -245,16 +752,11 @@ body {
   border-radius: 3px;
   transition: all 0.3s ease;
 }
-/* Add spinning animation for menu icon */
-.menu-icon {
-  transition: transform 0.5s ease; /* smooth spin */
-}
 
 .menu-icon.active {
-  transform: rotate(360deg); /* spin full circle when clicked */
+  transform: rotate(360deg);
 }
 
-/* Transform bars into cross */
 .menu-icon.active .bar:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
 .menu-icon.active .bar:nth-child(2) { opacity: 0; }
 .menu-icon.active .bar:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
@@ -267,6 +769,7 @@ body {
   width: 250px;
   height: calc(100% - 70px);
   background: rgba(0,0,0,0.95);
+  backdrop-filter: blur(12px);
   padding-top: 2rem;
   transition: right 0.3s ease;
   z-index: 2000;
@@ -277,55 +780,44 @@ body {
 .sidebar.open { right: 0; }
 
 .sidebar ul { list-style: none; padding: 0 1rem; display: flex; flex-direction: column; gap: 1.5rem; }
-.sidebar ul li a { color: #fff; text-decoration: none; font-size: 1.2rem; }
+.sidebar ul li a { color: #fff; text-decoration: none; font-size: 1.2rem; transition: color 0.3s; }
 .sidebar ul li a:hover { color: red; }
+
 /* Responsive */
 @media (max-width: 768px) {
-  /* Hide regular nav links */
   .nav-links { display: none; }
 
-  /* Navbar adjustments */
-  .navbar {
-    padding: 0.5rem 2rem;  /* decrease navbar height */
+  .navbar { padding: 0.5rem 2rem; }
+
+  .logo {
+    margin-left: 0;
+    position: relative;
+    top: 10px;
   }
 
- /* Logo adjustments */
-.logo {
-  margin-left: 0;        /* push logo to extreme left */
-  position: relative;    
-  top: 10px;              /* move logo slightly down, adjust as needed */
-}
+  .logo img { width: 150px; }
 
-.logo img {
-  width: 150px;          /* optional: smaller logo for mobile */
-}
-
-
-  /* Menu icon adjustments */
   .menu-icon {
-    display: flex;         
-    order: 2;              
-    margin-left: 300px;     /* push menu icon to far right */
-    position: relative;    
-    top: -25px;             /* move slightly upward */
+    display: flex;
+    order: 2;
+    margin-left: 300px;
+    position: relative;
+    top: -25px;
     cursor: pointer;
     z-index: 1002;
   }
 
-  /* Transform bars into cross when active */
   .menu-icon.active .bar:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
   .menu-icon.active .bar:nth-child(2) { opacity: 0; }
   .menu-icon.active .bar:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-  /* Sidebar adjustments */
   .sidebar {
     width: 250px;
     right: -100%;
-    top: 80px;                  /* align below reduced navbar */
+    top: 80px;
     height: calc(100% - 60px);
   }
 
-  /* Text and section adjustments */
   .welcome-section h1, .welcome-section h2 { font-size: 2rem; }
   .tab-options { font-size: 1.5rem; gap: 2rem; }
   .shayari-box p { font-size: 1.2rem; }
@@ -336,4 +828,12 @@ body {
   .hidden-section .about-content { width: 90%; font-size: 1.2rem; padding: 1.5rem; }
 
   body { background: url("Assets/background3.jpg") no-repeat center center fixed; background-size: cover; }
+
+  /* Poet's Society mobile */
+  #poets-society { padding: 0 0.5rem 3rem; }
+  .ps-upload-card { padding: 1.1rem; }
+  .ps-card { padding: 1rem 1.1rem; }
+  .donation-content { max-width: 95% !important; }
+  .payment-methods { gap: 0.4rem; }
+  .pay-method-btn { font-size: 0.78rem; padding: 0.45rem 0.3rem; }
 }
