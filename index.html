@@ -4,23 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mehfil-e-Dard</title>
+
+  <!-- Google Fonts: Playfair Display, Cormorant Garamond, Great Vibes, Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+
+  <!-- Sidebar backdrop: clicking it closes the sidebar -->
+  <div id="sidebar-backdrop"></div>
+
   <!-- Navbar -->
   <nav class="navbar">
     <div class="navbar-content">
       <div class="logo">
         <img src="Assets/newlogo-removebg-preview.png" alt="Logo" />
       </div>
-      <div class="menu-icon" id="menu-icon">
+      <div class="menu-icon" id="menu-icon" role="button" tabindex="0" aria-label="Toggle menu">
         <div class="bar"></div>
         <div class="bar"></div>
         <div class="bar"></div>
       </div>
     </div>
 
+    <!-- Desktop nav links -->
     <ul class="nav-links" id="nav-links">
       <li><a href="index.html"><i class="fa-regular fa-house"></i> Home</a></li>
       <li><a href="#contact"><i class="fa-solid fa-pen-nib"></i> Contact Us</a></li>
@@ -35,26 +46,31 @@
       </li>
     </ul>
 
-    <div class="sidebar" id="sidebar">
+    <!-- Mobile sidebar -->
+    <div class="sidebar" id="sidebar" aria-hidden="true">
+      <button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
       <ul>
         <li><a href="index.html"><i class="fa-regular fa-house"></i> Home</a></li>
         <li><a href="#contact"><i class="fa-solid fa-pen-nib"></i> Contact Us</a></li>
-        <li><a href="#about-authors">About the Authors</a></li>
-        <li><a href="#future-prospects">Future Prospects</a></li>
-        <li><a href="#donation">Make a Donation</a></li>
+        <li><a href="#about-authors"><i class="fa-solid fa-users"></i> About the Authors</a></li>
+        <li><a href="#future-prospects"><i class="fa-solid fa-star"></i> Future Prospects</a></li>
+        <li><a href="#donation"><i class="fa-solid fa-heart"></i> Make a Donation</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- Main Content -->
   <div id="main-content">
+
     <!-- Welcome Section -->
     <section class="welcome-section">
       <h1><span>Welcome to Mehfil-e-Dard.</span></h1>
       <h2><span>خوش آمدید محفلِ درد میں</span></h2>
     </section>
 
-    <!-- Shayari Section -->
+    <!-- Shayari / Tabs Section -->
     <section class="shayari-section">
       <div class="tab-options">
         <span class="tab-text active" id="mushaira-tab">Mushaira</span>
@@ -69,7 +85,7 @@
       </div>
       <button class="shayari-btn" id="shayari-btn">Click Me!</button>
 
-      <!-- ===== POET'S SOCIETY FEED (NEW) ===== -->
+      <!-- ===== POET'S SOCIETY FEED ===== -->
       <div id="poets-society" style="display:none;">
 
         <!-- Upload Form -->
@@ -106,7 +122,7 @@
           <h2 class="sub-title">Get in Touch</h2>
           <h3>Bleed ink! ✒️</h3>
           <div class="social-icons">
-            <a href="https://www.instagram.com/_almostsaidit_/" target="_blank"><i class="fab fa-instagram"></i>Follow us on Instagram</a>
+            <a href="https://www.instagram.com/_almostsaidit_/" target="_blank"><i class="fab fa-instagram"></i> Follow us on Instagram</a>
           </div>
         </div>
         <div class="contact-right">
@@ -135,13 +151,13 @@
       <p>Welcome to Mehfil-e-Dard!</p>
       <p>Connect with us on social media and follow our journey:</p>
       <p>
-        Md Enaitul Hoque: 
-        <a href="https://www.instagram.com/enaitulhoque/" target="_blank">Instagram</a> | 
+        Md Enaitul Hoque:
+        <a href="https://www.instagram.com/enaitulhoque/" target="_blank">Instagram</a> |
         <a href="https://www.linkedin.com/in/mdenaitulhoque/" target="_blank">LinkedIn</a>
       </p>
       <p>
-        Kamran Asad: 
-        <a href="https://www.instagram.com/kamranasad17/" target="_blank">Instagram</a> | 
+        Kamran Asad:
+        <a href="https://www.instagram.com/kamranasad17/" target="_blank">Instagram</a> |
         <a href="https://www.linkedin.com/in/kamran-asad-887028258/" target="_blank">LinkedIn</a>
       </p>
       <p>Don't forget to follow us for updates and more exciting content!</p>
@@ -154,22 +170,21 @@
     <div class="about-content" id="future-text">
       <h1 style="color: crimson;">Our Future Plans</h1>
       <p>
-        We plan to expand Mehfil-e-Dard into a vibrant online community for poetry lovers — 
-        hosting live virtual mushairas, publishing user-submitted works, and launching 
-        a dedicated mobile app. Our vision is to bring together poets, readers, and dreamers 
+        We plan to expand Mehfil-e-Dard into a vibrant online community for poetry lovers —
+        hosting live virtual mushairas, publishing user-submitted works, and launching
+        a dedicated mobile app. Our vision is to bring together poets, readers, and dreamers
         from across the world to share the language of emotions.
       </p>
     </div>
     <button class="close-btn">Close</button>
   </section>
 
-  <!-- ===== DONATION MODAL (NEW) ===== -->
+  <!-- Donation Modal -->
   <section id="donation-section" class="hidden-section">
     <div class="about-content donation-content">
       <h1 style="color: crimson; margin-bottom: 0.5rem;">💖 Support Mehfil-e-Dard</h1>
       <p style="color:#ccc; margin-bottom:1.5rem; font-size:1rem;">Your support helps us grow this community of words.</p>
 
-      <!-- QR Placeholder -->
       <div class="donation-qr">
         <div class="qr-placeholder">
           <i class="fa-solid fa-qrcode" style="font-size:3rem; color:crimson;"></i>
@@ -180,21 +195,31 @@
       <div class="donation-form">
         <input type="text" id="donor-name" placeholder="Your Name" maxlength="60" />
         <input type="number" id="donor-amount" placeholder="Amount (₹)" min="1" />
-
         <p style="font-size:0.9rem; color:#aaa; margin-bottom:0.4rem;">Choose Payment Method</p>
         <div class="payment-methods">
           <button class="pay-method-btn active" data-method="UPI">📱 UPI</button>
           <button class="pay-method-btn" data-method="Card">💳 Card</button>
           <button class="pay-method-btn" data-method="NetBanking">🏦 Net Banking</button>
         </div>
-
         <button class="donate-btn" id="donate-btn"><i class="fa-solid fa-heart"></i> Donate</button>
         <p id="donate-msg" class="donate-success-msg" style="display:none;"></p>
       </div>
     </div>
     <button class="close-btn">Close</button>
   </section>
-  <!-- ===== END DONATION MODAL ===== -->
+
+  <!-- ===== DELETE CONFIRMATION MODAL (NEW) ===== -->
+  <div id="delete-confirm-modal" class="delete-modal-overlay" style="display:none;" role="dialog" aria-modal="true">
+    <div class="delete-modal-box">
+      <i class="fa-solid fa-trash-can delete-modal-icon"></i>
+      <h3>Delete this post?</h3>
+      <p>This action cannot be undone.</p>
+      <div class="delete-modal-actions">
+        <button id="delete-confirm-yes" class="delete-modal-yes">Yes, Delete</button>
+        <button id="delete-confirm-no" class="delete-modal-no">Cancel</button>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 
@@ -203,11 +228,10 @@
     const scriptURL = 'https://script.google.com/macros/s/AKfycbx4sQxXFozEUv6Y06Hw8YeLjV0CPDmqfyYqpCggnt6QsAb3lbQW1Mi0H3sNXK11bNzb/exec';
     const form = document.forms['submit-to-google-sheet'];
     const msg = document.getElementById("msg");
-
     form.addEventListener('submit', e => {
       e.preventDefault();
       fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-        .then(response => {
+        .then(() => {
           msg.innerHTML = "Message sent successfully!";
           setTimeout(() => { msg.innerHTML = ""; }, 2000);
           form.reset();
