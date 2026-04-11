@@ -342,15 +342,44 @@ menuIcon.addEventListener("keydown", e => {
 });
 sidebarCloseBtn.addEventListener("click", closeSidebar);
 sidebarBackdrop.addEventListener("click", closeSidebar);
+sidebarBackdrop.addEventListener("touchstart", closeSidebar, { passive: true });
 
-// Overlay nav links
-document.querySelectorAll('a[href="#about-authors"], a[href="#future-prospects"]').forEach(link => {
+// ─── Sidebar link handling (robust mobile + touch support) ───
+document.querySelectorAll(".sidebar a").forEach(link => {
+  function handleSidebarLink(e) {
+    const href = link.getAttribute("href");
+
+    if (href === "#about-authors" || href === "#future-prospects") {
+      e.preventDefault();
+      closeSidebar();
+      setTimeout(() => {
+        if (href === "#about-authors")         showOverlay("about-authors-section");
+        else if (href === "#future-prospects") showOverlay("future-prospects-section");
+      }, 50);
+    } else {
+      // Normal navigation (index.html, index2.html, index.html#contact, index.html#donation)
+      closeSidebar();
+    }
+  }
+
+  link.addEventListener("click", handleSidebarLink);
+  link.addEventListener("touchend", function(e) {
+    const href = link.getAttribute("href");
+    if (href === "#about-authors" || href === "#future-prospects") {
+      handleSidebarLink(e);
+    }
+  }, { passive: false });
+});
+
+// Desktop nav overlay links
+document.querySelectorAll(
+  '.nav-links a[href="#about-authors"], .nav-links a[href="#future-prospects"]'
+).forEach(link => {
   link.addEventListener("click", e => {
     e.preventDefault();
     const href = link.getAttribute("href");
-    if (href === "#about-authors")    showOverlay("about-authors-section");
+    if (href === "#about-authors")         showOverlay("about-authors-section");
     else if (href === "#future-prospects") showOverlay("future-prospects-section");
-    closeSidebar();
   });
 });
 

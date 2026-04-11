@@ -404,21 +404,60 @@ sidebarCloseBtn.addEventListener("click", closeSidebar);
 
 // Click outside (backdrop)
 sidebarBackdrop.addEventListener("click", closeSidebar);
+sidebarBackdrop.addEventListener("touchstart", closeSidebar, { passive: true });
 
 // ─── Overlay + Sidebar nav links ─────────────────────────────
+// Handle ALL sidebar anchor links with explicit touch+click support
+document.querySelectorAll(".sidebar a").forEach(link => {
+  // Use both touchend and click to ensure mobile compatibility
+  function handleSidebarLink(e) {
+    const href = link.getAttribute("href");
+
+    // Only intercept hash-only links that need overlay or scroll handling
+    if (href === "#about-authors" || href === "#future-prospects" || href === "#contact" || href === "#donation") {
+      e.preventDefault();
+      closeSidebar();
+      // Small delay so sidebar close animation doesn't fight the overlay open
+      setTimeout(() => {
+        if (href === "#about-authors")       showOverlay("about-authors-section");
+        else if (href === "#future-prospects") showOverlay("future-prospects-section");
+        else if (href === "#donation")         showOverlay("donation-section");
+        else if (href === "#contact") {
+          const contactEl = document.getElementById("contact");
+          if (contactEl) contactEl.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 50);
+    } else {
+      // Normal navigation links (index.html, index2.html) — just close sidebar
+      closeSidebar();
+    }
+  }
+
+  link.addEventListener("click", handleSidebarLink);
+  // touchend for iOS Safari (fires before click, prevents 300ms delay)
+  link.addEventListener("touchend", function(e) {
+    // Only handle if it's a hash-only link to avoid double-navigation
+    const href = link.getAttribute("href");
+    if (href === "#about-authors" || href === "#future-prospects" || href === "#contact" || href === "#donation") {
+      handleSidebarLink(e);
+    }
+  }, { passive: false });
+});
+
+// Also handle desktop nav overlay links (not inside sidebar)
 document.querySelectorAll(
-  'a[href="#about-authors"], a[href="#future-prospects"], a[href="#contact"], a[href="#donation"]'
+  '.nav-links a[href="#about-authors"], .nav-links a[href="#future-prospects"], .nav-links a[href="#contact"], .nav-links a[href="#donation"]'
 ).forEach(link => {
   link.addEventListener("click", e => {
     e.preventDefault();
     const href = link.getAttribute("href");
-    if (href === "#about-authors")   showOverlay("about-authors-section");
+    if (href === "#about-authors")       showOverlay("about-authors-section");
     else if (href === "#future-prospects") showOverlay("future-prospects-section");
-    else if (href === "#donation")   showOverlay("donation-section");
+    else if (href === "#donation")         showOverlay("donation-section");
     else if (href === "#contact") {
-      document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+      const contactEl = document.getElementById("contact");
+      if (contactEl) contactEl.scrollIntoView({ behavior: "smooth" });
     }
-    closeSidebar();
   });
 });
 
