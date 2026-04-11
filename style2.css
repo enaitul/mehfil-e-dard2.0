@@ -53,6 +53,15 @@ img { max-width: 100%; height: auto; display: block; }
 .nav-links a::after { content: ""; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--red); transition: width 0.3s; }
 .nav-links a:hover::after { width: 100%; }
 .nav-links a:hover { color: var(--red); }
+.nav-links a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.nav-links a i {
+  display: inline-flex;
+}
 
 .dropdown { position: relative; }
 .dropdown-menu { position: absolute; top: calc(100% + 8px); left: -60px; background: rgba(10,2,2,0.92); backdrop-filter: blur(16px); border: 1px solid rgba(220,20,60,0.2); border-radius: 12px; padding: 8px 0; list-style: none; display: none; min-width: 185px; box-shadow: 0 12px 32px rgba(0,0,0,0.5); z-index: 1001; }
